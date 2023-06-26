@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SearchIcon from '@mui/icons-material/Search';
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -67,10 +68,12 @@ const Navbar = () => {
           <Input placeholder='Search' ></Input>
           <SearchIcon/>
         </Search>
-        <Button>
+        <NavLink to="signin" style={{textDecoration:"none"}} >
+          <Button>
           <AccountCircleIcon/>
           SIGN IN
-        </Button>
+          </Button>
+        </NavLink>
       </Wrapper>
     </Container>
   )
