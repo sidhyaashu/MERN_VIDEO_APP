@@ -6,17 +6,18 @@ import videoRoute from './routes/VideoR.js'
 import commentRoute from './routes/CommentsR.js'
 import authRoute from './routes/AuthR.js'
 import morgan from 'morgan'
+import cookieParser from 'cookie-parser';
+
 
 
 dotenv.config()
 
 
-
-
 const app = express()
 const DB = process.env.MONGO_URL
+const PORT = 4000 || 3000
 
-
+app.use(cookieParser())
 app.use(express.json())
 app.use(morgan("tiny"))
 
@@ -25,6 +26,8 @@ app.use("/api/auth",authRoute)
 app.use("/api/users",userRoute)
 app.use("/api/videos",videoRoute)
 app.use("/api/comments",commentRoute)
+
+// process.on("warning", (e) => console.warn(e.stack));
 
 app.use((err,req,res,next)=>{
     const status = err.status || 500;
@@ -46,7 +49,7 @@ const connect =()=>{
     })
 }
 
-app.listen(8800,()=>{
-    connect()
-    console.log("Connected to the server")
-})
+app.listen(PORT, () => {
+  connect();
+  console.log(`SERVER CONNECTED TO ${PORT}`);
+});
