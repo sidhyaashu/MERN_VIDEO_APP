@@ -11,7 +11,7 @@ server
 sv/node_modules
 ui/node_modules
 .env
-
+%MERNProjects%MERN_VIDEO_APP
 dist
 dist-ssr
 *.local

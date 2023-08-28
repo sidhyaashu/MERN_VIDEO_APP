@@ -31,7 +31,7 @@ app.use("/api/comments",commentRoute)
 
 app.use((err,req,res,next)=>{
     const status = err.status || 500;
-    const message = err.message || "Something went wron!";
+    const message = err.message || "Something went wrong!";
     return res.status(status).json({
         success:false,
         status:status,
@@ -53,3 +53,6 @@ app.listen(PORT, () => {
   connect();
   console.log(`SERVER CONNECTED TO ${PORT}`);
 });
+
+
+// comments options are remains
