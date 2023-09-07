@@ -4,7 +4,7 @@ import Video from "../models/VideoM.js"
 
 
 export const addVideo = async(req,res,next)=>{
-    const addVideo = new Video({userId:req.body.id,...req.body})
+    const addVideo = new Video({userId:req.user.id,...req.body})
     try {
         const saveVideo = await addVideo.save()
         res.status(200).json(saveVideo)
@@ -76,7 +76,7 @@ export const addView  = async(req,res,next)=>{
     try {
       await Video.findByIdAndUpdate(req.params.id,{
         $inc:{views:1}
-      })
+      },{new:true})
       res.status(200).json("The views has been increase")
     } catch (err) {
       next(err);
@@ -122,7 +122,7 @@ export const sub  = async(req,res,next)=>{
 
 
 export const tags  = async(req,res,next)=>{
-  const tags = req.query.split(",")
+  const tags = req.query.tags.split(",");
 
     try {
       const videos = await Video.find({ tags: { $in: tags } }).limit(20);

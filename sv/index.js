@@ -15,7 +15,7 @@ dotenv.config()
 
 const app = express()
 const DB = process.env.MONGO_URL
-const PORT = 4000 || 3000
+const PORT = 8800 || 3000
 
 app.use(cookieParser())
 app.use(express.json())
