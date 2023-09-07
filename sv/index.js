@@ -7,7 +7,7 @@ import commentRoute from './routes/CommentsR.js'
 import authRoute from './routes/AuthR.js'
 import morgan from 'morgan'
 import cookieParser from 'cookie-parser';
-
+import cors from "cors"
 
 
 dotenv.config()
@@ -20,6 +20,7 @@ const PORT = 8800 || 3000
 app.use(cookieParser())
 app.use(express.json())
 app.use(morgan("tiny"))
+app.use(cors())
 
 
 app.use("/api/auth",authRoute)

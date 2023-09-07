@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import VideoCard from "../components/VideoCard"
-
+import { useEffect, useState } from "react";
+import axios from "axios"
 
 
 const Container = styled.div`
@@ -9,22 +10,18 @@ const Container = styled.div`
     flex-wrap: wrap;
 `
 
-const Home = () => {
+const Home = ({type}) => {
+  const [videos, setVideos] = useState([]);
+  useEffect(()=>{
+    const fetchVideos = async()=>{
+      const res =await axios.get(`http://localhost:8800/api/videos/${type}`)
+      setVideos(res.data)
+    }
+    fetchVideos()
+  },[type])
   return (
     <Container>
-      <VideoCard/>
-      <VideoCard/>
-      <VideoCard/>
-      <VideoCard/>
-      <VideoCard/>
-      <VideoCard/>
-      <VideoCard/>
-      <VideoCard/>
-      <VideoCard/>
-      <VideoCard/>
-      <VideoCard/>
-      <VideoCard/>
-      <VideoCard/>
+      {videos.map((video)=>(<VideoCard key={video._id} video={video} />))}
     </Container>
   )
 }
