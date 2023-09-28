@@ -1,5 +1,5 @@
 import express from 'express'
-import { signIn, signUp } from '../controllers/AuthC.js'
+import { googleAuth, signIn, signUp } from '../controllers/AuthC.js'
 
 const router = express.Router()
 
@@ -11,7 +11,7 @@ router.post("/signin",signIn)
 
 
 //GOOGLE AUTH
-// router.post("/google",)
+router.post("/google",googleAuth)
 
 
 
